@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-edge": "^2.0.2",
+    "mongoose": "^5.10.9",
     "nodemon": "^2.0.4"
   }
 }
