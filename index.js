@@ -15,11 +15,20 @@ app.use(fileUpload())
 
 mongoose.connect("mongodb://localhost/node-js-blog")
 
+
+const validateCreatePostMiddleware = (req, res, next) => {
+    if(!req.files.image || !req.body.title || !req.body.subtitle || !req.body.content || !req.body.username) {
+        return res.redirect('/posts/new')
+    }
+    next()
+}
+
+app.use('/posts/store', validateCreatePostMiddleware)
+
 app.set('views', `${__dirname}/views`)
 
 app.get("/", async (req, res) => {
     const posts = await Post.find({})
-    console.log(posts)
     res.render('index', {
         posts
     })
